@@ -15,6 +15,7 @@ def get_generic_path_information(paths, stat_prefix=''):
     Get an OrderedDict with a bunch of statistic names and values.
     """
     statistics = OrderedDict()
+    # import pdb; pdb.set_trace()
     returns = [sum(path["rewards"]) for path in paths]
 
     rewards = np.vstack([path["rewards"] for path in paths])
