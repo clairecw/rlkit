@@ -67,6 +67,7 @@ class DDPGTrainer(TorchTrainer):
             self.policy.parameters(),
             lr=self.policy_learning_rate,
         )
+        self.qf_lr_scheduler = optim.StepLR(self.qf_optimizer, step_size=100, gamma=0.1)
 
         self.eval_statistics = OrderedDict()
         self._n_train_steps_total = 0
@@ -138,6 +139,7 @@ class DDPGTrainer(TorchTrainer):
         self.qf_optimizer.zero_grad()
         qf_loss.backward()
         self.qf_optimizer.step()
+        self.qf_lr_scheduler.step()
 
         self._update_target_networks()
 

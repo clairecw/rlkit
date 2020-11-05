@@ -80,9 +80,9 @@ if __name__ == "__main__":
         ),
         trainer_kwargs=dict(
             use_soft_update=True,
-            tau=1e-3,
+            tau=1e-2,
             discount=0.99,
-            qf_learning_rate=1e-4,
+            qf_learning_rate=1e-3,
             policy_learning_rate=1e-4,
         ),
         qf_kwargs=dict(
@@ -94,5 +94,5 @@ if __name__ == "__main__":
         replay_buffer_size=int(1E6),
     )
     # ptu.set_gpu_mode(True)  # optionally set the GPU (default=False)
-    setup_logger('slowerlearning', variant=variant)
+    setup_logger('lrscheduler', variant=variant)
     experiment(variant)
